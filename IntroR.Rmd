@@ -1,0 +1,241 @@
+---
+title: "Introduction to R"
+author: "Escapa I.F."
+date: "January 2020"
+output: html_document
+---
+<br></br> 
+<br></br> 
+
+# R Studio 
+
+R Studio is an IDE (Integrated development environment) for R
+
+- console
+- script window
+- workspace (environment)
+- lower right window:
+    - file directory 
+    - packages
+    - help
+    - plots
+
+# GitHub Integration 
+
+## SSH keys
+
+https://happygitwithr.com/ssh-keys.html
+
+## Make a repo on GitHub
+
+You can create a repo on your own profile page, click on “Repositories”, then click the green “New” button.
+
+Consider creating the new repo on the Team page if this is a LemonLab Project: <https://github.com/KLemonLab>
+
+Copy the SSH clone URL to your clipboard via the green “Clone or Download” button.
+
+## Clone the new GitHub repository to your computer via RStudio
+
+In RStudio, start a new Project: **File > New Project > Version Control > Git.** 
+In “Repository URL”, paste the URL of your new GitHub repository. 
+Accept the default project directory name, e.g. myrepo, which coincides with the GitHub repo name and pay attention to where you save it!
+
+## Make local changes, save, commit and push
+
+From RStudio, modify the README.md file, e.g., by adding the line “This is a line from RStudio”. Save your changes.
+
+Commit these changes to your local repo from RStudio:
+
+- Click the “Git” tab in upper right pane.
+- Check “Staged” box for README.md.
+- If you’re not already in the Git pop-up, click “Commit”.
+- Type a message in “Commit message”, such as “Commit from RStudio”.
+- Click “Commit”.
+
+Now Push your local changes online to GitHub: click the green “Push” button to send your local changes to GitHub. Go back to the browser and confirm the local change propagated to GitHub.
+
+## Ignore files in GitHub
+
+The .gitignore file's purpose is to prevent everyone who collaborates on the same project from accidentally committing some common files in a project, such as generated cache files. This is really IMPORTANT if you make edits to the .Rprofile file like editing the path to a Python environment (See reticulate package below)
+
+You can open the .gitignore file with this code
+```{r, eval=FALSE}
+file.edit(".gitignore")
+```
+
+You can paste the following file names and save the file:
+```
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# User-specific files
+.Ruserdata
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+# R Environment Variables
+.Renviron
+.Rprofile
+
+# Other
+
+**/.DS_Store
+/ignore
+```
+I recommend having an "ignore" folder in you project where you can keep files you don't want to get sync to the GitHub repo. For example big files that can not be uploaded to GitHub. Then having a GitHubIgnored folder in box.com as backup for all your repos "ignore" folders.
+
+## Using Python on RStudio (Advanced)
+
+Markdown files on RStudio can be used as Project Notebooks even with code in other languages (Python, Perl...). 
+
+This installs the devtools version of the reticulate package https://rstudio.github.io/reticulate/index.html:
+```{r, eval=FALSE}
+if (!requireNamespace("devtools", quietly = TRUE))
+    install.packages("devtools")
+(devtools::install_github("rstudio/reticulate"))
+```
+
+In order to use your desired Python environment you need to define the path in the .Rprofile for the project. 
+```{r, eval=FALSE}
+file.edit(".Rprofile")
+```
+In the opened .Rprofile file paste this:
+Sys.setenv(RETICULATE_PYTHON = "/Users/isabelfe/opt/anaconda3/envs/anvio-6.2/bin/python")
+
+You should substitute the path to your own Python environment in your computer. If you don't know the path, open the Terminal, activate your desired Python environment and use **which python** to find the path.
+
+You need to run this chunk of code at the begging of each .Rmd file in your project
+```{r}
+Sys.getenv("RETICULATE_PYTHON") #This forces R to search in the path we set up in the .Rprofile  
+library(reticulate)
+#py_config() #This is to see what python is being used. It should be your anvio-6.2 environment
+```
+
+Now you can run in the document several types of code chunks:
+
+* R code using {r}
+```{r}
+R.Version()$version.string
+```
+
+* Python code (with your desired Python environment activated) using {bash}
+```{bash}
+which python
+anvi-profile --version
+```
+
+This Python code is not interactive, you cannot run commands that require you to interact during their execution. If you want to use Python interactively use this function to start a Python session in the Console:
+```{r, eval=FALSE}
+repl_python()
+```
+YOu can also just run code interactively on the RStudio Terminal.
+
+# Objects
+```{r}
+4+4
+20 * 250
+5^2
+```
+
+```{r}
+x <- 4+4 
+#Look at the workspace!
+x 
+#Look at the console!
+x <- 4+10
+y <- 5
+```
+
+```{r}
+nums.vector <- c(7, 8, 45, 3, 2, 67)
+cols.vector <- c("red", "blue", "green", "pink")
+my.list  <- list(x, y, nums.vector, cols.vector)
+my.matrix <- cbind(x, y, nums.vector, cols.vector)
+```
+
+```{r}
+class(nums.vector)
+class(cols.vector)
+class(my.list)
+class(my.matrix)
+```
+
+```{r}
+my.list
+```
+```{r}
+my.matrix
+```
+
+## Data Frames and indexing
+```{r}
+mtcars #built-in data frame, go to the help window to learn about it
+cars <- mtcars
+```
+```{r}
+cars$mpg
+```
+```{r}
+cars[,1]
+```
+```{r}
+cars[17,]
+```
+
+## Data Import/Export
+```{r}
+mydata <- read.csv("Example01.csv")
+mydata
+```
+
+```{r}
+mydata$Average <-rowMeans(mydata[c("Bio.1", "Bio.2", "Bio.3","Bio.4")])
+```
+
+```{r}
+library(tidyverse)
+write_csv(mydata, "Example01_Edited.csv")
+```
+
+```{r}
+write_rds(mydata, "Example01_Edited.rds")
+mydata_Edited <- read_rds("Example01_Edited.rds")
+```
+
+# Learn more here
+
+<https://r4ds.had.co.nz>
+
+<https://happygitwithr.com>
+
+<https://rstudio.com/resources/cheatsheets/>
+

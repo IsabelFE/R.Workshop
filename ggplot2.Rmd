@@ -1,0 +1,187 @@
+---
+title: "ggplot2"
+author: "Escapa I.F."
+date: "January 2020"
+output: html_document
+---
+<br></br> 
+<br></br> 
+
+```{r, message = FALSE}
+library(tidyverse)
+library(Hmisc) #For summary functions
+library(xtable) #For printing the statistics tables
+```
+
+# Data Import and Reshaping
+
+```{r}
+rawdata <- read.csv("Example01.csv")
+```
+
+The initial data are in **wide** format, we need them in **long format**. For this transformation we can use `reshape`:
+```{r, tidy = TRUE}
+longdata <- reshape(rawdata, varying =list(c("Bio.1","Bio.2","Bio.3","Bio.4")), v.names = "Biofilm", timevar = "Experiment", direction = "long")
+longdata$id <- factor(longdata$id, labels = c("WT_TSB","MutA_TSB","MutB_TSB","MutAB_TSB","WT_CDM","MutA_CDM","MutB_CDM","MutAB_CDM"))
+```
+
+# Basic Plots
+
+## Scatterplots
+
+```{r}
+ggplot(longdata) 
+```
+```{r}
+ggplot(longdata, aes(x = Strain, y = Biofilm)) +
+  geom_point()
+```
+```{r}
+ggplot(longdata, aes(x = Strain, y = Biofilm, color = Media)) +
+  geom_point()
+```
+```{r}
+ggplot(longdata, aes(x = Strain, y = Biofilm, color = Media)) +
+  geom_boxplot() 
+```
+```{r}
+ggplot(longdata, aes(x = Strain, y = Biofilm, color = Media)) +
+  geom_boxplot() +
+  geom_point(position = position_dodge(0.75), alpha=0.5)
+```
+```{r}
+ggplot(longdata, aes(x = Strain, y = Biofilm, color = Media)) +
+  geom_point(alpha=0.5) +
+  stat_summary(fun = "mean", geom = "point", size = 4)
+```
+```{r}
+ggplot(longdata, aes(x = Strain, y = Biofilm, color = Media)) +
+  stat_summary(fun = "mean", geom = "point", size = 4)
+```
+
+## Bar plots
+
+```{r}
+ggplot(longdata, aes(x = Strain, y = Biofilm, color = Media)) +
+  stat_summary(fun = "mean", geom = "bar")
+```
+```{r}
+ggplot(longdata, aes(x = Strain, y = Biofilm, fill = Media)) +
+  stat_summary(fun = "mean", geom = "bar", position = position_dodge())
+```
+```{r}
+ggplot(longdata, aes(x = Strain, y = Biofilm, fill = Media)) +
+  stat_summary(fun = "mean", geom = "bar", position = position_dodge()) +
+  stat_summary(fun.data = "median_hilow", geom = "errorbar", position=position_dodge(.9)) 
+```
+```{r}
+ggplot(longdata, aes(x = Strain, y = Biofilm, fill = Media)) +
+  stat_summary(fun.data = "median_hilow", geom = "errorbar", position=position_dodge(.9), width = 0.2) +
+  stat_summary(fun = "mean", geom = "bar", position = position_dodge()) 
+```
+
+fun.data = "median_hilow" (When the default conf.int=0.95 is used, the lower and upper quantiles computed are 0.025 and 0.975.) 
+See also: "mean_cl_boot" / "mean_sdl"
+
+# Styling plots
+
+```{r}
+ugly.plot <- ggplot(longdata, aes(x = Strain, y = Biofilm, fill = Media)) +
+  stat_summary(fun.data = "median_hilow", geom = "errorbar", position=position_dodge(.9), width = 0.2) +
+  stat_summary(fun = "mean", geom = "bar", position = position_dodge()) 
+```
+
+```{r}
+ugly.plot +
+  theme_classic()
+```
+```{r}
+ugly.plot +
+  theme_classic() +
+  scale_fill_manual(values = c("gray80", "gray40")) 
+```
+```{r}
+ugly.plot +
+  theme_classic() +
+  scale_fill_manual(values = c("gray80", "gray40")) +
+  scale_y_continuous(expand = c(0, 0)) 
+```
+```{r}
+ugly.plot +
+  theme_classic() +
+  scale_fill_manual(values = c("gray80", "gray40")) +
+  scale_y_continuous(expand = c(0, 0)) +
+  ylab("Biofilm(OD600)") + xlab("")
+```
+
+# Facets
+
+```{r}
+ugly.plot +
+  theme_classic() +
+  scale_fill_manual(values = c("gray80", "gray40")) +
+  scale_y_continuous(expand = c(0, 0)) +
+  ylab("Biofilm(OD600)") + xlab("") +
+  facet_wrap(~ Media)
+```
+
+# Statistics
+
+## One-way ANOVA
+
+```{r}
+ANOVA <- aov(Biofilm ~ id, longdata)
+```
+
+```{r, echo = FALSE}
+summary(ANOVA)
+```
+
+```{r, results = 'hide', echo = FALSE}
+pvalue <- summary(ANOVA)[[1]][[1,"Pr(>F)"]]
+```
+**RESULT:** There is a statistically significant difference between these conditions, with a p-value of `r pvalue`
+
+## Two-way ANOVA
+
+```{r}
+ANOVA2 <- aov(Biofilm ~ Strain + Media, longdata)
+```
+
+```{r, echo = FALSE}
+summary(ANOVA2)
+```
+
+```{r, results = 'hide', echo = FALSE}
+pvalue1 <- summary(ANOVA2)[[1]][[1,"Pr(>F)"]]
+pvalue2 <- summary(ANOVA2)[[1]][[2,"Pr(>F)"]]
+```
+**RESULT:** 
+There is a statistically significant difference between strains, with a p-value of `r pvalue1`. 
+There is a statistically significant difference between media, with a p-value of `r pvalue2`. 
+
+## T-test Pairwise comparisons
+
+**Pairwise comparisons with Bonferroni correction**
+```{r, results = 'hide', echo = FALSE}
+pairwise.t.test(longdata$Biofilm,longdata$id, p.adj = "bonf")
+```
+
+```{r results = 'asis'}
+BONF <- pairwise.t.test(longdata$Biofilm,longdata$id, p.adj = "bonf")
+BONF.table <- xtable(BONF$p.value, digits = 4)
+print(BONF.table, type = "html")
+```
+
+**Pairwise comparisons with Tukey correction**
+```{r, results = 'hide', echo = FALSE}
+TukeyHSD(ANOVA, "id")
+```
+
+```{r results = 'asis'}
+TUKEY <- TukeyHSD(ANOVA, "id")
+TUKEY.table <- xtable(TUKEY$id, digits = 4)
+print(TUKEY.table, type = "html")
+```
+
+
