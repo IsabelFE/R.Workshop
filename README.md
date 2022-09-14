@@ -1,2 +1,2 @@
 # R.Workshop
-Basic R Workshop for the Lemon Lab
+Basic R Workshop created by Isabel Fernandez Escapa
