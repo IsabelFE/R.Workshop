@@ -1,0 +1,87 @@
+---
+title: "Introduction to R"
+author: "Escapa I.F."
+date: "`r Sys.Date()`"
+output: html_document
+---
+<br></br> 
+<br></br> 
+
+# Objects
+```{r}
+4+4
+20 * 250
+5^2
+```
+
+```{r}
+x <- 4+4 
+#Look at the workspace!
+x 
+#Look at the console!
+x <- 4+10
+y <- 5
+```
+
+```{r}
+nums.vector <- c(7, 8, 45, 3, 2, 67)
+cols.vector <- c("red", "blue", "green", "pink")
+my.list  <- list(x, y, nums.vector, cols.vector)
+my.matrix <- cbind(x, y, nums.vector, cols.vector)
+```
+
+```{r}
+class(nums.vector)
+class(cols.vector)
+class(my.list)
+class(my.matrix)
+```
+
+```{r}
+my.list
+```
+```{r}
+my.matrix
+```
+
+# Data Frames and indexing
+```{r}
+mtcars #built-in data frame, go to the help window to learn about it
+cars <- mtcars
+```
+```{r}
+cars$mpg
+```
+```{r}
+cars[,1]
+```
+```{r}
+cars[17,]
+```
+
+# Data Import/Export
+```{r}
+mydata <- read.csv("data_archive/Example01.csv")
+mydata
+```
+
+```{r}
+mydata$Average <-rowMeans(mydata[c("Bio.1", "Bio.2", "Bio.3","Bio.4")])
+```
+
+```{r}
+library(tidyverse)
+write_csv(mydata, "output/Example01_Edited.csv")
+```
+
+```{r}
+write_rds(mydata, "output/Example01_Edited.rds")
+mydata_Edited <- read_rds("output/Example01_Edited.rds")
+```
+
+# Learn more here
+
+<https://r4ds.had.co.nz>
+
+<https://rstudio.com/resources/cheatsheets/>
+

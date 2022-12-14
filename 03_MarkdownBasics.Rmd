@@ -1,7 +1,7 @@
 ---
-title: "Markdown Basics"
+title: "Introduction to R"
 author: "Escapa I.F."
-date: "January 2020"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 <br></br> 

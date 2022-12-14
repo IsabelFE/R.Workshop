@@ -1,7 +1,7 @@
 ---
-title: "ggplot2"
+title: "Introduction to R"
 author: "Escapa I.F."
-date: "January 2020"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 <br></br> 
@@ -16,7 +16,7 @@ library(xtable) #For printing the statistics tables
 # Data Import and Reshaping
 
 ```{r}
-rawdata <- read.csv("Example01.csv")
+rawdata <- read.csv("data_archive/Example01.csv")
 ```
 
 The initial data are in **wide** format, we need them in **long format**. For this transformation we can use `reshape`:
