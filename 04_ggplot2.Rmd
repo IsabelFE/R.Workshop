@@ -16,7 +16,7 @@ library(xtable) #For printing the statistics tables
 # Data Import and Reshaping
 
 ```{r}
-rawdata <- read.csv("data_archive/Example01.csv")
+rawdata <- read.csv("data_input/Example01.csv")
 ```
 
 The initial data are in **wide** format, we need them in **long format**. For this transformation we can use `reshape`:

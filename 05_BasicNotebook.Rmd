@@ -1,0 +1,110 @@
+---
+title: "Introduction to R"
+author: "Escapa I.F."
+date: "`r Sys.Date()`"
+output: html_document
+params:
+  folder: syncfolder
+---
+<br></br> 
+<br></br> 
+
+```{r Setup, setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, echo = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = params$folder)
+```
+
+```{r, message = FALSE}
+library(data.table)
+library(tidyverse)
+library(kableExtra)
+library(reactable)
+library(htmltools)
+library(ggpubr)
+```
+
+```{r}
+#table <- fread("data_archive/test01_input.csv")
+```
+
+# Report for experiment test01 {.tabset .tabset-fade .tabset-pills}
+
+
+## Boxplot 
+
+```{r}
+#calculating yield in 3 different ways:
+table <- table[,yield01:=elute.vol*Q.conc][]
+table$yield02 <- table$elute.vol*table$Q.conc
+table <- table %>% mutate(yield03 = elute.vol*Q.conc)
+```
+
+```{r}
+ggplot(table, aes(x=reformatter, y=Q.conc, color=plate)) +
+  geom_boxplot(outlier.colour = 'grey', outlier.alpha = 0.5)
+```
+
+## Slopes
+
+```{r}
+#alternative way of calculating max per plate and slope using tidyverse:
+table <- table %>%
+  group_by(`96w.pos`) %>%
+  mutate(plate.max = max(Q.conc)) 
+
+table <- table %>%
+  mutate(new.plate.slope = case_when(
+    Q.conc==plate.max ~ plate,
+    TRUE ~ "eppen_221123"
+  ))
+```
+
+```{r}
+#a better way avoiding hardcoded names
+widetable <- table %>% 
+  select(plate, `96w.pos`, Q.conc)  %>% 
+  spread(plate, Q.conc)
+
+widetable$plate.slope <- colnames(widetable)[apply(widetable,1,which.max)]
+
+table <- left_join(table, widetable)
+```
+
+```{r}
+plot <- ggplot(table, aes(x=plate, y=Q.conc)) +
+  geom_point(aes(fill=plate)) + 
+  geom_line(aes(group=`96w.pos`, color=plate.slope)) +
+  labs(x='Reformatted by whom', y='Extraction concentration (ng/uL)')
+```
+
+#### Summary Table
+
+```{r}
+summary_table <- widetable %>%
+  group_by(plate.slope) %>%
+  summarise(samples = n())
+
+summary_table_formatted <- ggtexttable(summary_table, rows = NULL, theme = ttheme("blank"))
+```
+
+```{r, fig.height=6, fig.width=9}
+ggarrange(plot, summary_table_formatted, ncol=2, widths=c(3,1))
+```
+
+## Table 
+
+```{r, fig.width=9}
+htmltools::browsable(
+  tagList(
+    tags$button(
+      tagList(fontawesome::fa("download"), "Download as CSV"),
+      onclick = "Reactable.downloadDataCSV('table-download', 'table.csv')"
+    ),
+    table %>%
+      reactable(filterable = TRUE,
+                pagination = FALSE,
+                searchable = TRUE,
+                elementId = "table-download")
+  )
+)
+```
