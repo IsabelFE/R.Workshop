@@ -24,10 +24,10 @@ library(ggpubr)
 ```
 
 ```{r}
-#table <- fread("data_archive/test01_input.csv")
+#table <- fread("data_input/test01_input.csv")
 ```
 
-# Report for experiment test01 {.tabset .tabset-fade .tabset-pills}
+# Report for experiment `r file_id`` {.tabset .tabset-fade .tabset-pills}
 
 
 ## Boxplot 
