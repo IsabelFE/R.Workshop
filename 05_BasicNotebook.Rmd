@@ -27,7 +27,7 @@ library(ggpubr)
 #table <- fread("data_input/test01_input.csv")
 ```
 
-# Report for experiment `r file_id`` {.tabset .tabset-fade .tabset-pills}
+# Report for experiment `r file_id` {.tabset .tabset-fade .tabset-pills}
 
 
 ## Boxplot 
