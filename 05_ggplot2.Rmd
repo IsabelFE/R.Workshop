@@ -2,7 +2,7 @@
 title: "Introduction to R"
 author: "Escapa I.F."
 date: "`r Sys.Date()`"
-output: html_document
+output: github_document
 ---
 <br></br> 
 <br></br> 
