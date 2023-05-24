@@ -1,0 +1,9 @@
+# Site settings
+title: R Tutorials
+author:
+  name: Isabel Fernandez Escapa
+  email: isabel.fernandez.escapa@gmail.com
+description: "Some basic tutorials to get started with R"
+
+# Build settings
+remote_theme: jekyll/minima
