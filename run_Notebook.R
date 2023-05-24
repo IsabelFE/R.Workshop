@@ -7,12 +7,12 @@ library(filesstrings)
 
 # Setting up the working directory
 
-syncfolder <- '/Users/isabelfernandezescapa/Desktop/GitHub/R.Workshop/'
+syncfolder <- '/Users/isabelfe/GitHub/R.Workshop/'
 
 
 ###### PROCESSING ###### 
 
-# Listing all the '_sequencer_run.csv' files in the data_input folder and looping through the file list to run the fixing script
+# Listing all the '_input.csv' files in the data_input folder and looping through the file list to run the fixing script
 
 filelist <- list.files(file.path(syncfolder,"data_input"), pattern = '_input.csv', full.names=FALSE)
 
@@ -27,12 +27,12 @@ for (file in filelist) {
   table <- fread(fileDataPath)
   
   # Rendering '05_BasicNotebook.Rmd':
-  rmarkdown::render(input = "05_BasicNotebook.Rmd",
-                    output_format = "html_document",
+  rmarkdown::render(input = "06_BasicNotebook.Rmd",
+                    output_format = "github_document",
                     output_file = paste0(file_id, "_Report.html"),
-                    output_dir = file.path(syncfolder,"output", file_id),
+                    output_dir = file.path(syncfolder,"data_output", file_id),
                     params = list(folder = syncfolder))
   
   # Moving input files into 'data_archive'
-  file.move(fileDataPath, file.path(paste(syncfolder,"/output/", file_id, sep="")), overwrite = TRUE)
+  file.move(fileDataPath, file.path(paste(syncfolder,"/data_output/", file_id, sep="")), overwrite = TRUE)
 }
