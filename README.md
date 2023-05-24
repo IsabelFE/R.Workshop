@@ -1,15 +1,3 @@
----
-title: "R Tutorials"
-author:
-  - Isabel Fernandez Escapa
-output:
-  prettydoc::html_pretty:
-    theme: hpstr
-  github_document:
-    toc: true
-    toc_depth: 4
----
-
 
 
 1.  [R and R Studio Setup](01_RSetup.html)
