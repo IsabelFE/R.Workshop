@@ -6,4 +6,4 @@ author:
 description: "Some basic tutorials to get started with R"
 
 # Build settings
-remote_theme: jekyll/minima
+remote_theme: jekyll/minimal
