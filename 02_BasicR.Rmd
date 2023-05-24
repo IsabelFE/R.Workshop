@@ -61,7 +61,7 @@ cars[17,]
 
 # Data Import/Export
 ```{r}
-mydata <- read.csv("data_archive/Example01.csv")
+mydata <- read.csv("data_input/Example01.csv")
 mydata
 ```
 
@@ -71,12 +71,12 @@ mydata$Average <-rowMeans(mydata[c("Bio.1", "Bio.2", "Bio.3","Bio.4")])
 
 ```{r}
 library(tidyverse)
-write_csv(mydata, "output/Example01_Edited.csv")
+write_csv(mydata, "data_output/Example01_Edited.csv")
 ```
 
 ```{r}
-write_rds(mydata, "output/Example01_Edited.rds")
-mydata_Edited <- read_rds("output/Example01_Edited.rds")
+write_rds(mydata, "data_output/Example01_Edited.rds")
+mydata_Edited <- read_rds("data_output/Example01_Edited.rds")
 ```
 
 # Learn more here
