@@ -1,14 +1,3 @@
----
-title: "R Workshop"
-author:
-  - Isabel Fernandez Escapa
-output:
-  prettydoc::html_pretty:
-    theme: cayman
-  github_document:
-    toc: true
-    toc_depth: 4
----
 
 # R Workshop
 
