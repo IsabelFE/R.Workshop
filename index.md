@@ -2,10 +2,6 @@ R Workshop
 ================
 Isabel Fernandez Escapa
 
-- <a href="#r-workshop" id="toc-r-workshop">R Workshop</a>
-
-# R Workshop
-
 1.  [R and R Studio Setup](01_RSetup.html)
 2.  [Basic R](02_BasicR.html)
 3.  [Basic GitHub](03_GitHub.html)

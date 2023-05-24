@@ -10,8 +10,6 @@ output:
     theme: cayman
 ---
 
-# R Workshop
-
 
 
 1.  [R and R Studio Setup](01_RSetup.html)
