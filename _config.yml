@@ -6,4 +6,6 @@ author:
 description: "Some basic tutorials to get started with R"
 
 # Build settings
-remote_theme: jekyll/minimal
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
