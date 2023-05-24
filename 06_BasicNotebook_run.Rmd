@@ -1,16 +1,19 @@
 ---
-title: "Basic Notebook"
+title: "Basic Notebook run from Script"
 author:
   - Isabel Fernandez Escapa, isabel.fernandez.escapa@gmail.com
 output:
   rmdformats::robobook:
     use_bookdown: true
     code_folding: show
+params:
+  folder: syncfolder
 ---
 
 
 ```{r Setup, setup, include=FALSE}
 knitr::opts_chunk$set(message = FALSE, echo = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = params$folder)
 ```
 
 ```{r, message = FALSE}
@@ -22,10 +25,6 @@ library(htmltools)
 library(ggpubr)
 ```
 
-```{r}
-table <- fread("data_input/test01_input.csv")
-file_id <- "test"
-```
 
 # Report for experiment `r file_id` {.tabset .tabset-fade .tabset-pills}
 

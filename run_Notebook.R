@@ -27,12 +27,12 @@ for (file in filelist) {
   table <- fread(fileDataPath)
   
   # Rendering '05_BasicNotebook.Rmd':
-  rmarkdown::render(input = "06_BasicNotebook.Rmd",
-                    output_format = "github_document",
+  rmarkdown::render(input = "06_BasicNotebook_run.Rmd",
+                    output_format = "html_document",
                     output_file = paste0(file_id, "_Report.html"),
                     output_dir = file.path(syncfolder,"data_output", file_id),
                     params = list(folder = syncfolder))
   
   # Moving input files into 'data_archive'
-  file.move(fileDataPath, file.path(paste(syncfolder,"/data_output/", file_id, sep="")), overwrite = TRUE)
+  #file.move(fileDataPath, file.path(paste(syncfolder,"/data_output/", file_id, sep="")), overwrite = TRUE)
 }
