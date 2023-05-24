@@ -1,11 +1,15 @@
 ---
-title: "Introduction to R"
-author: "Escapa I.F."
-date: "`r Sys.Date()`"
-output: github_document
+title: "Basic R"
+author:
+  - Isabel Fernandez Escapa, isabel.fernandez.escapa@gmail.com
+output:
+  rmdformats::robobook:
+    use_bookdown: true
+    code_folding: show
+  github_document:
+    toc: true
+    toc_depth: 4
 ---
-<br></br> 
-<br></br> 
 
 # Objects
 ```{r}
