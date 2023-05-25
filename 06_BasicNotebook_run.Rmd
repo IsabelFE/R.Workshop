@@ -1,11 +1,4 @@
 ---
-title: "Basic Notebook run from Script"
-author:
-  - Isabel Fernandez Escapa, isabel.fernandez.escapa@gmail.com
-output:
-  rmdformats::robobook:
-    use_bookdown: true
-    code_folding: show
 params:
   folder: syncfolder
 ---

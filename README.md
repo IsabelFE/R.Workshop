@@ -5,6 +5,6 @@
 3.  [Basic GitHub](03_GitHub.html)
 4.  [Basic Markdown Styling](04_MarkdownBasics.html)
 5.  [Basic Data Visualization and Stats](05_ggplot2.html)
-6.  [Notebook automation](06_BasicNotebook.html) (To run automatic report use the script [run_Notebook.R](run_Notebook.R))
+6.  [Notebook automation](06_BasicNotebook.html) 
 
 

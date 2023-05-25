@@ -1,11 +1,5 @@
 ---
-title: "Basic Notebook"
-author:
-  - Isabel Fernandez Escapa, isabel.fernandez.escapa@gmail.com
-output:
-  rmdformats::robobook:
-    use_bookdown: true
-    code_folding: show
+output: html_document
 ---
 
 
@@ -26,6 +20,7 @@ library(ggpubr)
 table <- fread("data_input/test01_input.csv")
 file_id <- "test"
 ```
+
 
 # Report for experiment `r file_id` {.tabset .tabset-fade .tabset-pills}
 
@@ -108,3 +103,8 @@ htmltools::browsable(
   )
 )
 ```
+
+# 
+::: {#box style="color: white; background-color:red; font-size: 20px; text-align:center; font-weight: bold;"}
+To run as an automatic report use the script [run_Notebook.R](run_Notebook.R)
+:::
