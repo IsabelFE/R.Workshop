@@ -1,4 +1,6 @@
-
+---
+layout: default
+---
 
 1.  [R and R Studio Setup](01_RSetup.html)
 2.  [Basic R](02_BasicR.html)
