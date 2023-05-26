@@ -1,5 +1,5 @@
 ---
-title: "Basic GitHub"
+title: "Basic GitHub for R users"
 author:
   - Isabel Fernandez Escapa, isabel.fernandez.escapa@gmail.com
 output:
@@ -11,98 +11,78 @@ output:
     toc_depth: 4
 ---
 
-# GitHub Integration 
+# Setting up SSH keys for your device via R Studio
 
-See https://happygitwithr.com for more info
+Go to R Studio Settings and in the **Git/SVN** tab, hit *Create RSA Key*. In the window that appears, select ED25519 hit the *Create* button. The RSA file will be stored in a directory *(You can choose your own desired directory too).* Click, *View public key* and copy the displayed public key
 
-## SSH keys
+![](other/RStudioGit.png){width="350"}
 
-See instructions here: https://happygitwithr.com/ssh-keys.html
+If you haven't already, create a GitHub account. On the GitHub website, open the account settings tab and click the SSH keys tab. Click *Add SSH key* and paste in the public key you have copied from RStudio. You can have several keys (from different devices) linked to your GitHub account, use meaningful titles to identify them.
 
-## Make a repo on GitHub
+![](other/GitHubSSH.png){width="600"}
 
-You can create a repo on your own profile page, click on “Repositories”, then click the green “New” button.
+# Creating a new repository in GitHub
 
-Consider creating the new repo on a Team page if this is a Team Project.
+You can create a new repo on your own GitHub profile page, click on *Repositories*, then click the green *New* button. Consider creating the new repo from a Team page if this is a Team Project.
 
-Copy the SSH clone URL to your clipboard via the green “Clone or Download” button.
+![](other/GitHubNewRepo.png){width="279"}
 
-## Clone the new GitHub repository to your computer via RStudio
+In the next page select a *name* for your repository and a short *description*. You can make your repo public or private.
 
-In RStudio, start a new Project: **File > New Project > Version Control > Git.** 
-In “Repository URL”, paste the URL of your new GitHub repository. 
-Accept the default project directory name, e.g. myrepo, which coincides with the GitHub repo name and pay attention to where you save it!
+I recommend adding a `README.md` file to include general information about your project and possible an outline of the documents included.
 
-## Make local changes, save, commit and push
+Also I recommend adding a `.gitignore` file with *R template*.
 
-From RStudio, modify the README.md file, e.g., by adding the line “This is a line from RStudio”. Save your changes.
+![](other/GitHubNewRepoSettings.png){width="600"}
 
-Commit these changes to your local repo from RStudio:
+## Ignoring files in GitHub
 
-- Click the “Git” tab in upper right pane.
-- Check “Staged” box for README.md.
-- If you’re not already in the Git pop-up, click “Commit”.
-- Type a message in “Commit message”, such as “Commit from RStudio”.
-- Click “Commit”.
+The .gitignore file's purpose is to prevent everyone who collaborates on the same project from accidentally committing some common files in a project, such as generated cache files. This is really **IMPORTANT** if you make edits to the .Rprofile file like editing the path to a Python environment.
 
-Now Push your local changes online to GitHub: click the green “Push” button to send your local changes to GitHub. Go back to the browser and confirm the local change propagated to GitHub.
+You can open the .gitignore file with this code:
 
-## Ignore files in GitHub
-
-The .gitignore file's purpose is to prevent everyone who collaborates on the same project from accidentally committing some common files in a project, such as generated cache files. This is really IMPORTANT if you make edits to the .Rprofile file like editing the path to a Python environment (See reticulate package below)
-
-You can open the .gitignore file with this code
 ```{r, eval=FALSE}
 file.edit(".gitignore")
 ```
 
-You can paste the following file names and save the file:
-```
-# History files
-.Rhistory
-.Rapp.history
+I recommend having an *ignore"*folder in you project where you can keep files you don't want to get sync to the GitHub repo. For example big files that can not be uploaded to GitHub, or temporary files that don't need to me committed. You can have a *GitHubIgnored* folder in some cloud service as backup for all your repos *ignore* folders.
 
-# Session Data files
-.RData
+# Cloning a GitHub repository into your computer via R Studio
 
-# User-specific files
-.Ruserdata
+First, go to the GitHub page for your repo and copy the SSH URL to your clipboard via the green *Code* button.
 
-# Example code in package build process
-*-Ex.R
+![](other/GitHubClone.png){width="350"}
 
-# Output files from R CMD build
-/*.tar.gz
+Now go to RStudio and start a new Project: **File \> New Project \> Version Control \> Git**
 
-# Output files from R CMD check
-/*.Rcheck/
+![](other/RStudioNewProject01.png){width="350"}
 
-# RStudio files
-.Rproj.user/
+![](other/RStudioNewProject02.png){width="350"}
 
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
+In *Repository URL*, paste the URL of the GitHub repository you already copied into your clipboard. Accept the default project directory name, e.g. R.Workshop, which coincides with the GitHub repo name and pay attention to where you save it!
 
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
+![](other/RStudioNewProject03.png){width="350"}
 
-# knitr and R markdown default cache directories
-*_cache/
-/cache/
+# Working with Git via R Studio
 
-# Temporary files created by R markdown
-*.utf8.md
-*.knit.md
+## Make local changes, save, commit and push
 
-# R Environment Variables
-.Renviron
-.Rprofile
+From RStudio, modify the README.md file, e.g., by adding the line "This is a line from RStudio". Save your changes.
 
-# Other
+Commit these changes to your local repo from RStudio:
 
-**/.DS_Store
-/ignore
-```
-I recommend having an "ignore" folder in you project where you can keep files you don't want to get sync to the GitHub repo. For example big files that can not be uploaded to GitHub. Then having a GitHubIgnored folder in other clous service as backup for all your repos "ignore" folders.
+-   Click the "Git" tab in upper right pane.
+-   Check "Staged" box for README.md.
+-   If you're not already in the Git pop-up, click "Commit".
+-   Type a message in "Commit message", such as "Commit from RStudio".
+-   Click "Commit".
 
+Now Push your local changes online to GitHub: click the green "Push" button to send your local changes to GitHub. Go back to the browser and confirm the local change propagated to GitHub.
+
+# Helpful Links
+
+For help with Git/GitHub and R integration see: Helpful
+
+-   <https://happygitwithr.com/index.html>
+-   <https://argoshare.is.ed.ac.uk/healthyr_book/create-an-ssh-rsa-key-and-add-to-your-github-account.html>
+-   <https://enosjeba.medium.com/connecting-git-with-r-studio-fcbc2b6ee19e>
