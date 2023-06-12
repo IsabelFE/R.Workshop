@@ -145,7 +145,7 @@ git commit -a -m "your message" # stage and commit your changes
 
 -   After the merge you can open RStudio, make sure you are in the "main" branch, and "pull" in order to bring the merge commit into the **local** version of "main*"*.
 
--   If you have chossen to keep working in the same personal branch, swich to that and "merge main" into your branch **locally** and after "push" to the **remote** version.
+-   If you have chosen to keep working in the same personal branch, switch to that and "merge main" into your branch **locally** and after "push" to the **remote** version.
 
     ```         
     git checkout <branch name>
