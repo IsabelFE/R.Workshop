@@ -67,21 +67,35 @@ In *Repository URL*, paste the URL of the GitHub repository you already copied i
 
 ## Working on the Main branch
 
-If you are working in a project by yourself, or in early stages of a project whit different contributors working on independent files, it can be convenient to work directly into the *Main* branch.
+If you are working in a project by yourself, or in early stages of a project whit different contributors working on independent files, it can be convenient to work directly into the "Main" branch. It is really **IMPORTANT** that you always "commit" your changes locally before doing "pull". If someone else has edited the same file, and the changes were "pushed" to **remote** (GitHub), you will lose any **local** updates (your computer) and will not be able to recover them. However, you will not be able to "push" your new commits if there are pending commits that you have not "pulled" first. Therefore, the right order to commit changes to your **local** and **remote** versions of a repository from RStudio are:
 
-When you modify a file/s in the **local** version of your project you will see them in the *Git* panel on the upper right section of RStudio:
+### "Commit" your new changes **locally**
 
-![](other/RStudioCommits01.png)
+-   Look at the *Git* panel on the upper right section of RStudio to see if you have pending files that have been modified **locally**.
 
-You can commit these changes to your **local** (your computer) and **remote** (GitHub) versions of the repo from RStudio:
+    ![](other/RStudioCommits01.png)
 
--   Check "Staged" box for the files you want to update, or hit the "Commit" button to open the Git pop-up section and check "Staged" in there.
--   If you're not already in the Git pop-up, click "Commit".
--   Type a message in "Commit message".
--   Click "Commit".
--   ![](other/RStudioCommits02.png)
+-   Check the "staged" box for the files you want to update, or hit the "commit" button to open the *Git* pop-up section and check "staged" in there.
 
-Now Push your local changes online to GitHub: click the green "Push" button to send your local changes to GitHub. Go back to the browser and confirm the local change propagated to GitHub.
+    ![](other/RStudioCommits02.png)
+
+-   If you're not already in the Git pop-up, click "commit".
+
+-   Review the changes and type a message in "commit message".
+
+-   Click "commit". Now your "Main" branch is ahead or "origin/main" by 1 commit. The changes have been committed **locally**, but not to **remote**.
+
+![](other/RStudioCommits03.png){width="663"}
+
+### "Pull" to get other updates from **remote**
+
+-   If there are updates in the **remote** version that need to be updated **locally**, you need to "pull" those changes into the **local** version using the "pull" button in the *Git* panel on the upper right section of RStudio. Don't worry if you forget to do this step, if there are pending commits to be "pulled" you will be prompted to do a "pull". Also, if the newly "pulled" updates conflict with your new commits you will need to fix the issues before moving ahead.
+
+### "Push" your **local** updates into **remote**
+
+-   Click "push" to commit your **local** changes into the **remote** GitHub version. If you go back to your browser you will see the **local** changes have been uploaded to GitHub.
+
+    ![](other/RStudioCommits04.png)
 
 ## Working as a Team with multiples branches
 
