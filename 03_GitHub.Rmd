@@ -67,7 +67,7 @@ In *Repository URL*, paste the URL of the GitHub repository you already copied i
 
 ## Working on the Main branch
 
-If you are working in a project by yourself, or in early stages of a project whit different contributors working on independent files, it can be convenient to work directly into the "Main" branch. It is really **IMPORTANT** that you always "commit" your changes locally before doing "pull". If someone else has edited the same file, and the changes were "pushed" to **remote** (GitHub), you will lose any **local** updates (your computer) and will not be able to recover them. However, you will not be able to "push" your new commits if there are pending commits that you have not "pulled" first. Therefore, the right order to commit changes to your **local** and **remote** versions of a repository from RStudio are:
+If you are working in a project by yourself, or in early stages of a project whit different contributors working on independent files, it can be convenient to work directly into the "main" branch. It is really **IMPORTANT** that you always "commit" your changes locally before doing "pull". If someone else has edited the same file, and the changes were "pushed" to **remote** (GitHub), you will lose any **local** updates (your computer) and will not be able to recover them. However, you will not be able to "push" your new commits if there are pending commits that you have not "pulled" first. Therefore, the right order to commit changes to your **local** and **remote** versions of a repository from RStudio are:
 
 ### "Commit" your new changes **locally**
 
@@ -83,7 +83,7 @@ If you are working in a project by yourself, or in early stages of a project whi
 
 -   Review the changes and type a message in "commit message".
 
--   Click "commit". Now your "Main" branch is ahead or "origin/main" by 1 commit. The changes have been committed **locally**, but not to **remote**.
+-   Click "commit". Now your "main" branch is ahead or "origin/main" by 1 commit. The changes have been committed **locally**, but not to **remote**.
 
 ![](other/RStudioCommits03.png){width="663"}
 
@@ -97,9 +97,56 @@ If you are working in a project by yourself, or in early stages of a project whi
 
     ![](other/RStudioCommits04.png)
 
-## Working as a Team with multiples branches
+## Working with multiples branches 
 
-hhhhh
+This is the recommended way of working with *Git.* There are two styles of working with branches as a Team:
+
+1.  Create a new branch for each unit of work and close it after the work gets merged into main. Many teams use this workflow by linking each branch to each task defined in a project management tool like Jira.
+2.  Use a branch for each of the collaborators in a project and keep the branch open after each merge. You need to "pull" the merge back from **remote** into the **local** version of your branch after a "pull request" gets "merged" (see below).
+
+### Creating a new branch
+
+You can create a new branch from the *Git* panel on the upper right section of RStudio by clicking on the branch logo to the right of the settings button.
+
+![](images/RStudioBranches01.png)
+
+You can also use command line in the Terminal or the *Terminal* tab on R Studio:
+
+```         
+git branch <branch name> #Creates a new branch
+git checkout <branch name> #Switch to a branch
+```
+
+### Making commits and basic "pull"/"push"
+
+The general process is similar to the one described for working on "main", just make sure the right branch is selected on the upper right corner of the *Git* panel.
+
+You can also use command line in the Terminal or the *Terminal* tab on R Studio:
+
+```         
+git pull # pulls into the current branch from its remote version
+git push # push the changes from the local to the remote version of your branch
+git status # show changes/edits made
+git commit -a -m "your message" # stage and commit your changes
+```
+
+### Merging branches
+
+You can also use command line in the Terminal or the *Terminal* tab on R Studio. You need to install the[GitHub CLI manual](https://cli.github.com/manual/). aproved
+
+```         
+gh pr create # create a pull request
+gh pr review # show you description and website link of pull request. It does not let you review your own
+gh pr merge # merge the pull request into main once it has been aproved.
+```
+
+If you have admin privileges you can create and merge your own pull request in a few steps:
+
+```         
+gh pr create 
+gh pr merge --admin 
+git merge origin 
+```
 
 # Helpful Links
 
