@@ -139,11 +139,20 @@ git commit -a -m "your message" # stage and commit your changes
 
 -   Depending on the repository settings a number of reviews by other members of the team will be required before merging. Some members of the team might have privileges to merge without prior review.![](other/RStudioBranches04.png)
 
--   After the merge you can chose to close the branch or keep it open (see above about different working styles)
+-   After the merge you can chose to close the branch or keep it open (see above about different working styles).
 
     ![](images/RStudioBranches05-01.png)
 
 -   After the merge you can open RStudio, make sure you are in the "main" branch, and "pull" in order to bring the merge commit into the **local** version of "main*"*.
+
+-   If you have closed the branch you can clean up in RStudio before opening new branches:
+
+    ```         
+    git checkout main
+    git branch -d <branch name> # deletes local version of the branch
+    git prune # removes objects that are no longer being referenced
+    git fetch --prune # delete remote refs that are no longer in use on the remote repository.
+    ```
 
 -   If you have chosen to keep working in the same personal branch, switch to that and "merge main" into your branch **locally** and after "push" to the **remote** version.
 
@@ -153,7 +162,7 @@ git commit -a -m "your message" # stage and commit your changes
     git push
     ```
 
-    Instead of doing all these steps from GitHub you can install the [GitHub CLI](https://cli.github.com/manual/) and use command line:
+-   Instead of doing all these steps from GitHub you can install the [GitHub CLI](https://cli.github.com/manual/) and use command line:
 
     ```         
     gh pr create # create a pull request
