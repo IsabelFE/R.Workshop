@@ -101,7 +101,7 @@ If you are working in a project by yourself, or in early stages of a project whi
 
 This is the recommended way of working with *Git.* There are two styles of working with branches as a Team:
 
-1.  Create a new branch for each unit of work and close it after the work gets merged into main. Many teams use this workflow by linking each branch to each task defined in a project management tool like Jira.
+1.  Create a new branch for each unit of work and close it after the work gets merged into "main". Many teams use this workflow by linking each branch to each task defined in a project management tool like Jira.
 2.  Use a branch for each of the collaborators in a project and keep the branch open after each merge. You need to "pull" the merge back from **remote** into the **local** version of your branch after a "pull request" gets "merged" (see below).
 
 ### Creating a new branch
@@ -143,20 +143,29 @@ git commit -a -m "your message" # stage and commit your changes
 
     ![](images/RStudioBranches05-01.png)
 
--   You can also use command line in the Terminal or the *Terminal* tab on R Studio. You need to install the[GitHub CLI manual](https://cli.github.com/manual/).
+-   After the merge you can open RStudio, make sure you are in the "main" branch, and "pull" in order to bring the merge commit into the **local** version of "main*"*.
+
+-   If you have chossen to keep working in the same personal branch, swich to that and "merge main" into your branch **locally** and after "push" to the **remote** version.
+
+    ```         
+    git checkout <branch name>
+    git merge origin
+    git push
+    ```
+
+    Instead of doing all these steps from GitHub you can install the [GitHub CLI](https://cli.github.com/manual/) and use command line:
 
     ```         
     gh pr create # create a pull request
     gh pr review # show you description and website link of pull request. It does not let you review your own
-    gh pr merge # merge the pull request into main once it has been aproved.
-    ```
+    gh pr merge # merge the pull request into main once it has been aproved. 
+    gh pr merge --admin # If you have admin privileges you can create and merge your own pull request
 
--   If you have admin privileges you can create and merge your own pull request in a few steps:
-
-    ```         
-    gh pr create 
-    gh pr merge --admin 
+    git checkout main
+    git pull
+    git checkout <branch name>
     git merge origin 
+    git push
     ```
 
 # Helpful Links
