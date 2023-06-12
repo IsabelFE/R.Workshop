@@ -31,11 +31,11 @@ In the next page select a *name* for your repository and a short *description*. 
 
 I recommend adding a `README.md` file to include general information about your project and possible an outline of the documents included.
 
+## Ignoring files in GitHub
+
 Also I recommend adding a `.gitignore` file with *R template*.
 
 ![](other/GitHubNewRepoSettings.png){width="600"}
-
-## Ignoring files in GitHub
 
 The .gitignore file's purpose is to prevent everyone who collaborates on the same project from accidentally committing some common files in a project, such as generated cache files. This is really **IMPORTANT** if you make edits to the .Rprofile file like editing the path to a Python environment.
 
@@ -45,7 +45,7 @@ You can open the .gitignore file with this code:
 file.edit(".gitignore")
 ```
 
-I recommend having an *ignore"*folder in you project where you can keep files you don't want to get sync to the GitHub repo. For example big files that can not be uploaded to GitHub, or temporary files that don't need to me committed. You can have a *GitHubIgnored* folder in some cloud service as backup for all your repos *ignore* folders.
+I recommend having an "*ignore*"folder in you project where you can keep files you don't want to get sync to the GitHub repo. For example big files that can not be uploaded to GitHub, or temporary files that don't need to me committed. You can have a *GitHubIgnored* folder in some cloud service as backup for all your repos *ignore* folders.
 
 # Cloning a GitHub repository into your computer via R Studio
 
@@ -65,7 +65,7 @@ In *Repository URL*, paste the URL of the GitHub repository you already copied i
 
 # Working with Git via R Studio
 
-## Make local changes, save, commit and push
+## Working on the Main branch
 
 From RStudio, modify the README.md file, e.g., by adding the line "This is a line from RStudio". Save your changes.
 
@@ -78,6 +78,10 @@ Commit these changes to your local repo from RStudio:
 -   Click "Commit".
 
 Now Push your local changes online to GitHub: click the green "Push" button to send your local changes to GitHub. Go back to the browser and confirm the local change propagated to GitHub.
+
+## Working as a Team with multiples branches
+
+hhhhh
 
 # Helpful Links
 
