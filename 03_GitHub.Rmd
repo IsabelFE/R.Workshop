@@ -67,15 +67,19 @@ In *Repository URL*, paste the URL of the GitHub repository you already copied i
 
 ## Working on the Main branch
 
-From RStudio, modify the README.md file, e.g., by adding the line "This is a line from RStudio". Save your changes.
+If you are working in a project by yourself, or in early stages of a project whit different contributors working on independent files, it can be convenient to work directly into the *Main* branch.
 
-Commit these changes to your local repo from RStudio:
+When you modify a file/s in the **local** version of your project you will see them in the *Git* panel on the upper right section of RStudio:
 
--   Click the "Git" tab in upper right pane.
--   Check "Staged" box for README.md.
+![](other/RStudioCommits01.png)
+
+You can commit these changes to your **local** (your computer) and **remote** (GitHub) versions of the repo from RStudio:
+
+-   Check "Staged" box for the files you want to update, or hit the "Commit" button to open the Git pop-up section and check "Staged" in there.
 -   If you're not already in the Git pop-up, click "Commit".
--   Type a message in "Commit message", such as "Commit from RStudio".
+-   Type a message in "Commit message".
 -   Click "Commit".
+-   ![](other/RStudioCommits02.png)
 
 Now Push your local changes online to GitHub: click the green "Push" button to send your local changes to GitHub. Go back to the browser and confirm the local change propagated to GitHub.
 
