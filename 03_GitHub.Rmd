@@ -19,25 +19,14 @@ Go to R Studio Settings and in the **Git/SVN** tab, hit *Create RSA Key*. In the
 
 Terminal Command Line Althernative to Create SSH keys:
 
-You can also **create SSH keys through command line** on MacOS and Windows (Optional):
+You can also **create SSH keys through command line** (Optional):
 
-On MacOSX:
-
-1.  Open terminal
+1.  Open terminal (on MacOSX) or Git Bash (on Windows)
 2.  Type in ssh-keygen
 3.  Press enter enter
 4.  Find where the `id_rsa.pub` file that is generated is located
 5.  Open it with a text editor application
 6.  Copy the contents inside of it
-
-On Windows:
-
-1. Open Git Bash
-2. Type in ssh-keygen
-3. Press enter enter
-4. Find where the `id_rsa.pub` file that is generated is located
-5. Open it with a text editor application
-6. Copy the contents inside of it
 
 If you haven't already, create a GitHub account. On the GitHub website, open the account settings tab and click the SSH keys tab. Click *Add SSH key* and paste in the public key you have copied from RStudio. You can have several keys (from different devices) linked to your GitHub account, use meaningful titles to identify them.
 
@@ -198,7 +187,7 @@ git commit -a -m "your message" # stage and commit your changes
     git merge origin 
     git push
     ```
-    
+
 # Github Pages
 
 # Helpful Links
