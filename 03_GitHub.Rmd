@@ -17,6 +17,28 @@ Go to R Studio Settings and in the **Git/SVN** tab, hit *Create RSA Key*. In the
 
 ![](other/RStudioGit.png){width="350"}
 
+Terminal Command Line Althernative to Create SSH keys:
+
+You can also **create SSH keys through command line** on MacOS and Windows (Optional):
+
+On MacOSX:
+
+1.  Open terminal
+2.  Type in ssh-keygen
+3.  Press enter enter
+4.  Find where the `id_rsa.pub` file that is generated is located
+5.  Open it with a text editor application
+6.  Copy the contents inside of it
+
+On Windows:
+
+1. Open Git Bash
+2. Type in ssh-keygen
+3. Press enter enter
+4. Find where the `id_rsa.pub` file that is generated is located
+5. Open it with a text editor application
+6. Copy the contents inside of it
+
 If you haven't already, create a GitHub account. On the GitHub website, open the account settings tab and click the SSH keys tab. Click *Add SSH key* and paste in the public key you have copied from RStudio. You can have several keys (from different devices) linked to your GitHub account, use meaningful titles to identify them.
 
 ![](other/GitHubSSH.png){width="600"}
@@ -67,7 +89,7 @@ In *Repository URL*, paste the URL of the GitHub repository you already copied i
 
 ## Working on the Main branch
 
-If you are working in a project by yourself, or in early stages of a project whit different contributors working on independent files, it can be convenient to work directly into the "main" branch. It is really **IMPORTANT** that you always "commit" your changes locally before doing "pull". If someone else has edited the same file, and the changes were "pushed" to **remote** (GitHub), you will lose any **local** updates (your computer) and will not be able to recover them. However, you will not be able to "push" your new commits if there are pending commits that you have not "pulled" first. Therefore, the right order to commit changes to your **local** and **remote** versions of a repository from RStudio are:
+If you are working in a project by yourself, or in early stages of a project with different contributors working on independent files, it can be convenient to work directly into the "main" branch. It is really **IMPORTANT** that you always "commit" your changes locally before doing "pull". If someone else has edited the same file, and the changes were "pushed" to **remote** (GitHub), you will lose any **local** updates (your computer) and will not be able to recover them. However, you will not be able to "push" your new commits if there are pending commits that you have not "pulled" first. Therefore, the right order to commit changes to your **local** and **remote** versions of a repository from RStudio are:
 
 ### "Commit" your new changes **locally**
 
@@ -176,6 +198,8 @@ git commit -a -m "your message" # stage and commit your changes
     git merge origin 
     git push
     ```
+    
+# Github Pages
 
 # Helpful Links
 
