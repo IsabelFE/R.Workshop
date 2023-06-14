@@ -6,10 +6,11 @@ output:
   rmdformats::robobook:
     use_bookdown: true
     code_folding: show
-  github_document:
-    toc: true
-    toc_depth: 4
 ---
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(c('r', 'bash'))
+```
 
 # Setting up SSH keys for your device via R Studio
 
@@ -123,7 +124,7 @@ This is the recommended way of working with *Git.* There are two styles of worki
 
 -   You can also use command line in the Terminal or the *Terminal* tab on R Studio:
 
-```         
+```{bash, eval=FALSE}         
 git branch <branch name> #Creates a new branch
 git checkout <branch name> #Switch to a branch
 ```
@@ -133,7 +134,7 @@ git checkout <branch name> #Switch to a branch
 -   The general process is similar to the one described for working on "main", just make sure the right branch is selected on the upper right corner of the *Git* panel.
 -   You can also use command line in the Terminal or the *Terminal* tab on R Studio:
 
-```         
+```{bash, eval=FALSE}       
 git pull # pulls into the current branch from its remote version
 git push # push the changes from the local to the remote version of your branch
 git status # show changes/edits made
@@ -158,35 +159,36 @@ git commit -a -m "your message" # stage and commit your changes
 
 -   If you have closed the branch you can clean up in RStudio before opening new branches:
 
-    ```         
-    git checkout main
-    git branch -d <branch name> # deletes local version of the branch
-    git prune # removes objects that are no longer being referenced
-    git fetch --prune # delete remote refs that are no longer in use on the remote repository.
-    ```
+```{bash, eval=FALSE}    
+git checkout main
+git branch -d <branch name> # deletes local version of the branch
+git prune # removes objects that are no longer being referenced
+git fetch --prune # delete remote refs that are no longer in use on the remote repository.
+```
+
 
 -   If you have chosen to keep working in the same personal branch, switch to that and "merge main" into your branch **locally** and after "push" to the **remote** version.
 
-    ```         
-    git checkout <branch name>
-    git merge origin
-    git push
-    ```
+```{bash, eval=FALSE}          
+git checkout <branch name>
+git merge origin
+git push
+```
 
 -   Instead of doing all these steps from GitHub you can install the [GitHub CLI](https://cli.github.com/manual/) and use command line:
 
-    ```         
-    gh pr create # create a pull request
-    gh pr review # show you description and website link of pull request. It does not let you review your own
-    gh pr merge # merge the pull request into main once it has been aproved. 
-    gh pr merge --admin # If you have admin privileges you can create and merge your own pull request
+```{bash, eval=FALSE}        
+gh pr create # create a pull request
+gh pr review # show you description and website link of pull request. It does not let you review your own
+gh pr merge # merge the pull request into main once it has been aproved. 
+gh pr merge --admin # If you have admin privileges you can create and merge your own pull request
 
-    git checkout main
-    git pull
-    git checkout <branch name>
-    git merge origin 
-    git push
-    ```
+git checkout main
+git pull
+git checkout <branch name>
+git merge origin 
+git push
+```
 
 # Github Pages
 
