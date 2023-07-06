@@ -1804,31 +1804,25 @@ margin-left: 0 !important;
 <p>In order to use your desired Python environment you need to define the path in the .Rprofile for the project.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">file.edit</span>(<span class="st">&quot;.Rprofile&quot;</span>)</span></code></pre></div>
 <p>In the opened .Rprofile file paste this: Sys.setenv(RETICULATE_PYTHON = “/opt/miniconda3/bin/python”)</p>
-<p>You should substitute the path to your own Python environment in your computer. If you don’t know the path, open the Terminal, activate your desired Python environment and use <strong>which python</strong> to find the path.</p>
+<p>You should substitute the path to your own Python environment in your computer. If you don’t know the path, open the Terminal, activate your desired Python environment and use <code>which python</code> to find the path.</p>
 <p>You need to run this chunk of code at the begging of each .Rmd file in your project</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#Sys.getenv(&quot;RETICULATE_PYTHON&quot;) #This forces R to search in the path we set up in the .Rprofile  </span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">py_config</span>() <span class="co">#This is to see what python is being used. It should be your desired environment</span></span></code></pre></div>
-<pre><code>## python:         /Users/isabelfe/miniconda3/bin/python
-## libpython:      /Users/isabelfe/miniconda3/lib/libpython3.10.dylib
-## pythonhome:     /Users/isabelfe/miniconda3:/Users/isabelfe/miniconda3
-## version:        3.10.11 | packaged by conda-forge | (main, May 10 2023, 19:01:19) [Clang 14.0.6 ]
-## numpy:           [NOT FOUND]
-## 
-## NOTE: Python version was forced by RETICULATE_PYTHON_FALLBACK</code></pre>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">use_condaenv</span>(<span class="st">&quot;env_name&quot;</span>, <span class="at">required =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">py_config</span>() <span class="co">#This is to see what python is being used. It should be your desired environment</span></span></code></pre></div>
 <p>Now you can run in the document several types of code chunks:</p>
 <ul>
 <li>R code using {r}</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">R.Version</span>()<span class="sc">$</span>version.string</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">R.Version</span>()<span class="sc">$</span>version.string</span></code></pre></div>
 <pre><code>## [1] &quot;R version 4.3.0 (2023-04-21)&quot;</code></pre>
 <ul>
 <li>Python code (with your desired Python environment activated) using {bash}</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">which</span> python</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">which</span> python</span></code></pre></div>
 <pre><code>## /Users/isabelfe/miniconda3/bin/python</code></pre>
 <p>This Python code is not interactive, you cannot run commands that require you to interact during their execution. If you want to use Python interactively use this function to start a Python session in the Console:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">repl_python</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">repl_python</span>()</span></code></pre></div>
 <p>You can also just run code interactively on the RStudio Terminal.</p>
 </div>
 

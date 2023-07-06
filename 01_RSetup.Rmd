@@ -54,13 +54,14 @@ file.edit(".Rprofile")
 
 In the opened .Rprofile file paste this: Sys.setenv(RETICULATE_PYTHON = "/opt/miniconda3/bin/python")
 
-You should substitute the path to your own Python environment in your computer. If you don't know the path, open the Terminal, activate your desired Python environment and use **which python** to find the path.
+You should substitute the path to your own Python environment in your computer. If you don't know the path, open the Terminal, activate your desired Python environment and use `which python` to find the path.
 
 You need to run this chunk of code at the begging of each .Rmd file in your project
 
-```{r}
+```{r, eval=FALSE}
 #Sys.getenv("RETICULATE_PYTHON") #This forces R to search in the path we set up in the .Rprofile  
 library(reticulate)
+use_condaenv("env_name", required = TRUE) 
 py_config() #This is to see what python is being used. It should be your desired environment
 ```
 
