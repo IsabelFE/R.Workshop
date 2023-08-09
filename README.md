@@ -6,5 +6,5 @@
 4.  [Basic Markdown Styling](04_MarkdownBasics.html)
 5.  [Basic Data Visualization and Stats](05_ggplot2.html)
 6.  [Notebook automation](06_BasicNotebook.html) 
-
+7.  [Connect Posit Rcloud Server to Github](07_Rcloud_connect_Github.html)
 
