@@ -1,0 +1,37 @@
+---
+title: "Connect Posit Rcloud Server to Github"
+author:
+  - Tommy Hiller Tran, Tommy_Tran@alumni.baylor.edu
+date: "`r Sys.Date()`"
+output:
+  rmdformats::robobook:
+    use_bookdown: true
+    code_folding: show
+---
+
+If you are indeed on Posit RCloud on a browser, run the following commands on the terminal panel.
+
+Create a .ssh directory and give it permissions:
+
+```{bash, eval=FALSE}
+cd ~           # goes to most parent folder  
+mkdir .ssh     # Make a directory
+chmod 700 .ssh # Owner has read, write and execuate permissions
+```
+
+Create a ssh key
+
+```{bash, eval=FALSE}
+ssh-keygen                         # create ssh key, it should default to create in the .ssh folder press enter and enter for                                               passphrase 2x
+cat /home/r20xxxxx/.ssh/id_rsa.pub # read the id_rsa.pub file, copy and paste the contents into your github settings in browser
+chmod 600 ~/.ssh/id_rsa            # read and write access for owner but no one else
+```
+
+Then set your git remote source to use the ssh authentication with a command like this, while on your project root folder:
+
+```{bash, eval=FALSE}
+cd /cloud/project                                                                 # go to project
+git remote set-url origin git@github.com:your_user_name/your_repository_name.git  # set git remote souce to use ssh authentification
+```
+
+Now try and test git pull, commit, and push
