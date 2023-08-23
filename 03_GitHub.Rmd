@@ -122,7 +122,7 @@ This is the recommended way of working with *Git.* There are two styles of worki
 
     ![](other/RStudioBranches01.png)
 
--   You can also use command line in the Terminal or the *Terminal* tab on R Studio:
+-   You can also use command line in the Terminal or the *Terminal* tab on R Studio (make sure you `cd` into your project folder):
 
 ```{bash, eval=FALSE}
 git branch <branch name> #Creates a new branch
@@ -132,7 +132,7 @@ git checkout <branch name> #Switch to a branch
 ### Making commits and basic "pull"/"push"
 
 -   The general process is similar to the one described for working on "main", just make sure the right branch is selected on the upper right corner of the *Git* panel.
--   You can also use command line in the Terminal or the *Terminal* tab on R Studio:
+-   You can also use command line in the Terminal or the *Terminal* tab on R Studio (make sure you `cd` into your project folder):
 
 ```{bash, eval=FALSE}
 git pull # pulls into the current branch from its remote version
@@ -159,7 +159,7 @@ git commit -a -m "your message" # stage and commit your changes
 
     ![](other/RStudioBranches05.png)
 
--   After the merge you can open RStudio, make sure you are in the "main" branch, and "pull" in order to bring the merge commit into the **local** version of "main*"*.
+-   After the merge you can open RStudio, make sure you are in the "main" branch, and "pull" in order to bring the merge commit into the **local** version of "main*"*. Make sure you `cd` into your project folder first:
 
 -   If you have closed the branch you can clean up in RStudio before opening new branches:
 
